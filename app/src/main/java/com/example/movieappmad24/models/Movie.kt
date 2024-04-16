@@ -20,6 +20,16 @@ data class Movie(
     var isFavorite by mutableStateOf(initialIsFavorite)
 }
 
+
+fun getMovieById(movieId: String?, moviesViewModel: MoviesViewModel): Movie {
+    moviesViewModel.movieList.forEach { movie ->
+        if (movie.id == movieId) {
+            return movie
+        }
+    }
+    return moviesViewModel.movieList[0]
+}
+
 fun getMovies(): List<Movie> {
     return listOf(
         Movie(id = "tt0499549",
